@@ -127,15 +127,15 @@ class Vision:
         return img
 
     def mounted(self):
-        location = self.matchTemplateLocation(self.mount_img, 0.9)
+        location = self.matchTemplateLocation(self.mount_img, 0.8)
         return location != None
 
     def mapOpened(self):
-        location = self.matchTemplateLocation(self.map_corner_img, 0.9)
+        location = self.matchTemplateLocation(self.map_corner_img, 0.8)
         return location != None
 
     def inventoryOpened(self):
-        location = self.matchTemplateLocation(self.inventory_img, 0.9)
+        location = self.matchTemplateLocation(self.inventory_img, 0.8)
         return location != None
 
     def locateSeed(self, seed):
@@ -145,10 +145,10 @@ class Vision:
         elif seed == 4:
             img = self.t4_seed_img
 
-        return self.matchTemplateLocation(img, 0.9)
+        return self.matchTemplateLocation(img, 0.8)
 
     def locatePlaceButton(self):
-        return self.matchTemplateLocation(self.place_img, 0.9)
+        return self.matchTemplateLocation(self.place_img, 0.8)
 
     def locateTeleporter(self):
         return self.matchTemplateLocation(self.teleporter, 0.7)
