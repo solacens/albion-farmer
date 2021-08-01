@@ -107,6 +107,37 @@ listener_quit = keyboard.Listener(
     on_press=on_press_quit)
 listener_quit.start()
 
+print("""
+# 0
+actions.pointCharacterCursor()
+# +
+actions.recordCursorPosition()
+# -
+actions.moveToRecordedCursorPosition()
+# .
+actions.getOffsetToRecordedCursorPosition()
+# 1
+actions.takeOrWaterAction()
+# 2
+actions.farmAction()
+# 3
+actions.takeOrWaterAction(True)
+# 4
+prerequisite()
+actions.autoFarm(seed=3, water=False)
+# 5
+prerequisite()
+actions.autoFarm(seed=4, water=False)
+# 6
+prerequisite()
+actions.autoWater()
+# 7
+---
+# 8
+solacenz()
+# 9
+solacens()
+""")
 
 if True:
     listener_quit.join()
