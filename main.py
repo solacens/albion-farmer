@@ -12,13 +12,16 @@ actions = Actions(vision)
 print('Window size x{} y{}'.format(vision.width, vision.height))
 print('Window position x{} y{}'.format(vision.pos_x, vision.pos_y))
 
+prerequisiteInitialized = False
+
 
 def prerequisite():
-    actions.activateGameWindow()
-    actions.ensureMaxView()
-    actions.ensureMapSizeAndLocation()
-    actions.ensureMounted()
-    print("Prerequisite alignment actions done.")
+    if not prerequisiteInitialized:
+        actions.activateGameWindow()
+        actions.ensureMaxView()
+        actions.ensureMapSizeAndLocation()
+        actions.ensureMounted()
+        print("Prerequisite alignment actions done.")
 
 
 def solacenz():
