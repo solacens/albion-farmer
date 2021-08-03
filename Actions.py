@@ -94,6 +94,7 @@ class Actions:
         self.centerCursor()
         for _ in range(0, 16):
             pyautogui.scroll(1)
+            sleep(0.25)
         pyautogui.press('n')
 
     def ensureMounted(self):
