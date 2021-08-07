@@ -140,7 +140,7 @@ actions.autoFarm(seed=4, water=False)
 prerequisite()
 actions.autoWater()
 # 7
-two_T3
+two_T3()
 # 8
 two_T4_water()
 # 9
