@@ -21,13 +21,20 @@ def prerequisite():
     print("Prerequisite alignment actions done.")
 
 
-def solacenz():
+def two_T3():
     prerequisite()
 
     # Starting from "Solacens's Island"
     actions.autoFarm(seed=3, water=False)
     actions.useTeleporter("SOLACEND'S ISLAND")
     actions.autoFarm(seed=3, water=False)
+    actions.useTeleporter("SOLACENS'S ISLAND")
+
+
+def two_T4_water():
+    prerequisite()
+
+    # Starting from "Solacens's Island"
     actions.useTeleporter("SOLACENE'S ISLAND")
     actions.autoFarm(seed=4, water=True)
     actions.useTeleporter("SOLACENO'S ISLAND")
@@ -35,7 +42,7 @@ def solacenz():
     actions.useTeleporter("SOLACENS'S ISLAND")
 
 
-def solacens():
+def two_T4():
     prerequisite()
 
     # Starting from "Solacens's Island"
@@ -88,12 +95,13 @@ def on_press(key):
             actions.autoWater()
             return
         elif key.vk == 103:  # 7
+            two_T3()
             return
         elif key.vk == 104:  # 8
-            solacenz()
+            two_T4_water()
             return
         elif key.vk == 105:  # 9
-            solacens()
+            two_T4()
             return
 
 
@@ -132,11 +140,11 @@ actions.autoFarm(seed=4, water=False)
 prerequisite()
 actions.autoWater()
 # 7
----
+two_T3
 # 8
-solacenz()
+two_T4_water()
 # 9
-solacens()
+two_T4()
 """)
 
 if True:
