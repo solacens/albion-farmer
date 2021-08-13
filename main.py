@@ -25,13 +25,13 @@ def solacens():
     prerequisite()
 
     # Starting from "Solacens's Island"
-    actions.autoFarm(seed=3, water=False)
+    actions.autoFarm(seed=3, water=True)
     actions.useTeleporter("SOLACEND'S ISLAND")
-    actions.autoFarm(seed=3, water=False)
+    actions.autoFarm(seed=3, water=True)
     actions.useTeleporter("SOLACENE'S ISLAND")
-    actions.autoFarm(seed=4, water=False)
+    actions.autoFarm(seed=3, water=False)
     actions.useTeleporter("SOLACENO'S ISLAND")
-    actions.autoFarm(seed=4, water=False)
+    actions.autoFarm(seed=3, water=False)
     actions.useTeleporter("SOLACENX'S ISLAND")
     actions.autoFarm(seed=4, water=False)
     actions.useTeleporter("SOLACENZ'S ISLAND")
