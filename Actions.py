@@ -36,7 +36,7 @@ class Actions:
     path_1_to_2 = [(583, 474)]
     path_2_to_3 = [(648, 521)]
     path_3_to_4 = [(716, 478)]
-    path_4_to_5 = [(782, 521)]
+    path_4_to_5 = [(781, 520)]
     path_5_to_teleporter = [(516, 684), (416, 618), (303, 703)]
 
     # Constructor
