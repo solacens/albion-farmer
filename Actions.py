@@ -279,15 +279,19 @@ class Actions:
             target = path.pop(0)
             print("Target x{} y{} set".format(target[0], target[1]))
             while True:
+                pyautogui.press('s')
+                sleepTime = 0.45
+
                 pos = self.locateMapPointer()
                 dis = self.getRelativeDistance(pos, target)
 
                 moveDis = 200
-                if dis < 5:
+                if dis < 3:
                     print("Target x{} y{} reached".format(target[0], target[1]))
                     break
-                elif dis < 60 and dis > 5:
+                elif dis < 30 and dis > 3:
                     moveDis = 60
+                    sleepTime = 0
 
                 degree = self.getRelativeDegree(pos, target)
 
@@ -295,6 +299,8 @@ class Actions:
                     charCenter[0], charCenter[1], degree, moveDis)
 
                 pyautogui.click(x=wayPos[0], y=wayPos[1], button='right')
+
+                sleep(sleepTime)
 
             # Center again for further operation
             charCenter = self.pointCharacterCursor()
