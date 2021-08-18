@@ -75,7 +75,7 @@ class Vision:
         cv2.waitKey()
         cv2.destroyAllWindows()
 
-    def matchTemplateLocation(self, img, threshold):
+    def matchTemplateLocation(self, img, threshold, untilFound=False):
         result = cv2.matchTemplate(
             self.getScreenshot(), img, cv2.TM_CCOEFF_NORMED)
 
@@ -85,7 +85,10 @@ class Vision:
         if len(locations) >= 1:
             return self.normalizePosition(locations[0], img.shape)
         else:
-            return None
+            if untilFound:
+                return self.matchTemplateLocation(img, threshold-0.05, untilFound=True)
+            else:
+                return None
 
     def normalizePosition(self, tuple, shape):
         return (tuple[0] + self.pos_x + shape[1] / 2, tuple[1] + self.pos_y + shape[0] / 2)
@@ -145,13 +148,13 @@ class Vision:
         elif seed == 4:
             img = self.t4_seed_img
 
-        return self.matchTemplateLocation(img, 0.8)
+        return self.matchTemplateLocation(img, 0.8, True)
 
     def locatePlaceButton(self):
-        return self.matchTemplateLocation(self.place_img, 0.8)
+        return self.matchTemplateLocation(self.place_img, 0.8, True)
 
     def locateTeleporter(self):
-        return self.matchTemplateLocation(self.teleporter, 0.7)
+        return self.matchTemplateLocation(self.teleporter, 0.7, True)
 
     def locateMapPointer(self):
         image = self.getScreenshot()
