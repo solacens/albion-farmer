@@ -104,9 +104,28 @@ class Actions:
             pyautogui.press('a')
             sleep(4)
 
-    def takeOrWater(self, backToOriginal=False):
+    def pressTake(self, backToOriginal=False):
         pos = pyautogui.position()
-        pyautogui.click(x=self.vision.pos_x + 770, y=self.vision.pos_y + 590)
+        location = self.vision.locateTakeButton()
+        if location is not None:
+            pyautogui.click(x=location[0], y=location[1])
+        else:
+            pyautogui.press('esc')
+            raise Exception('Cannot take')
+        if backToOriginal:
+            pyautogui.moveTo(x=pos.x, y=pos.y)
+
+    def pressWater(self, backToOriginal=False):
+        pos = pyautogui.position()
+        location = self.vision.locateWaterButton()
+        if location is not None:
+            sleep(1.5)
+            pyautogui.click(x=location[0], y=location[1])
+        else:
+            location = self.vision.locateCantWaterButton()
+            if location is None:
+                pyautogui.press('esc')
+                raise Exception('Cannot water')
         if backToOriginal:
             pyautogui.moveTo(x=pos.x, y=pos.y)
 
@@ -148,63 +167,90 @@ class Actions:
         sleep(1.5)
         self.ensureMounted()
 
+    def checkFarmed(self):
+        self.pointCharacterCursor()
+        pyautogui.click()
+        if (self.vision.locateCantWaterButton() is not None) or (self.vision.locateCantWaterButton() is not None):
+            pyautogui.press('esc')
+            print("Farmed already")
+            return True
+        else:
+            pyautogui.press('esc')
+            return False
+
     def takeOrWaterAction(self, water=False):
         delay = 0
-        if water:
-            delay = 1.5
         pos = pyautogui.position()
         pyautogui.click()
         sleep(1)
-        self.takeOrWater()
-        sleep(delay)
+        if water:
+            self.pressWater()
+        else:
+            self.pressTake()
         pyautogui.press('esc')
         pyautogui.click(
             x=pos.x + self.offset_takeOrWater[0][0], y=pos.y + self.offset_takeOrWater[0][1])
         sleep(1)
-        self.takeOrWater()
-        sleep(delay)
+        if water:
+            self.pressWater()
+        else:
+            self.pressTake()
         pyautogui.press('esc')
         pyautogui.click(
             x=pos.x + self.offset_takeOrWater[1][0], y=pos.y + self.offset_takeOrWater[1][1])
         sleep(1)
-        self.takeOrWater()
-        sleep(delay)
+        if water:
+            self.pressWater()
+        else:
+            self.pressTake()
         pyautogui.press('esc')
         pyautogui.click(
             x=pos.x + self.offset_takeOrWater[2][0], y=pos.y + self.offset_takeOrWater[2][1])
         sleep(1)
-        self.takeOrWater()
-        sleep(delay)
+        if water:
+            self.pressWater()
+        else:
+            self.pressTake()
         pyautogui.press('esc')
         pyautogui.click(
             x=pos.x + self.offset_takeOrWater[3][0], y=pos.y + self.offset_takeOrWater[3][1])
         sleep(1)
-        self.takeOrWater()
-        sleep(delay)
+        if water:
+            self.pressWater()
+        else:
+            self.pressTake()
         pyautogui.press('esc')
         pyautogui.click(
             x=pos.x + self.offset_takeOrWater[4][0], y=pos.y + self.offset_takeOrWater[4][1])
         sleep(1)
-        self.takeOrWater()
-        sleep(delay)
+        if water:
+            self.pressWater()
+        else:
+            self.pressTake()
         pyautogui.press('esc')
         pyautogui.click(
             x=pos.x + self.offset_takeOrWater[5][0], y=pos.y + self.offset_takeOrWater[5][1])
         sleep(1)
-        self.takeOrWater()
-        sleep(delay)
+        if water:
+            self.pressWater()
+        else:
+            self.pressTake()
         pyautogui.press('esc')
         pyautogui.click(
             x=pos.x + self.offset_takeOrWater[6][0], y=pos.y + self.offset_takeOrWater[6][1])
         sleep(1)
-        self.takeOrWater()
-        sleep(delay)
+        if water:
+            self.pressWater()
+        else:
+            self.pressTake()
         pyautogui.press('esc')
         pyautogui.click(
             x=pos.x + self.offset_takeOrWater[7][0], y=pos.y + self.offset_takeOrWater[7][1])
         sleep(1)
-        self.takeOrWater()
-        sleep(delay)
+        if water:
+            self.pressWater()
+        else:
+            self.pressTake()
         pyautogui.press('esc')
         pyautogui.click(
             x=pos.x + self.offset_takeOrWater[8][0], y=pos.y + self.offset_takeOrWater[8][1], button='right')
@@ -223,9 +269,17 @@ class Actions:
         pyautogui.moveTo(x=pos.x, y=pos.y)
 
     def integratedFarm(self, seed, water=False):
+        # Check
+        if self.checkFarmed():
+            return
+
         # Take
         self.pointCharacterCursor()
-        self.takeOrWaterAction()
+        try:
+            self.takeOrWaterAction()
+        except:
+            print("Error in farming")
+            return
 
         # Farm
         self.pointCharacterCursor()
@@ -245,6 +299,8 @@ class Actions:
         # Water
         if water:
             self.takeOrWaterAction(water=True)
+
+        print("Farmed")
 
     def locateMapPointer(self):
         if not self.vision.mapOpened():
@@ -277,7 +333,6 @@ class Actions:
         while len(path):
             charCenter = self.pointCharacterCursor()
             target = path.pop(0)
-            print("Target x{} y{} set".format(target[0], target[1]))
             while True:
                 pyautogui.press('s')
                 sleepTime = 0.45
@@ -287,7 +342,8 @@ class Actions:
 
                 moveDis = 200
                 if dis < 3:
-                    print("Target x{} y{} reached".format(target[0], target[1]))
+                    if len(path) == 0:
+                        print("Position {} reached".format(toPlace))
                     break
                 elif dis < 30 and dis > 3:
                     moveDis = 60

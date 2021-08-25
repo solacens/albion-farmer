@@ -61,6 +61,12 @@ class Vision:
             'img/inventory.jpg', cv2.IMREAD_UNCHANGED)
         self.place_img = cv2.imread(
             'img/place.jpg', cv2.IMREAD_UNCHANGED)
+        self.cant_water_img = cv2.imread(
+            'img/cant_water.jpg', cv2.IMREAD_UNCHANGED)
+        self.water_img = cv2.imread(
+            'img/water.jpg', cv2.IMREAD_UNCHANGED)
+        self.take_img = cv2.imread(
+            'img/take.jpg', cv2.IMREAD_UNCHANGED)
         self.t3_seed_img = cv2.imread(
             'img/t3_seed.jpg', cv2.IMREAD_UNCHANGED)
         self.t4_seed_img = cv2.imread(
@@ -151,7 +157,16 @@ class Vision:
         return self.matchTemplateLocation(img, 0.8, True)
 
     def locatePlaceButton(self):
-        return self.matchTemplateLocation(self.place_img, 0.8, True)
+        return self.matchTemplateLocation(self.place_img, 0.8)
+
+    def locateWaterButton(self):
+        return self.matchTemplateLocation(self.water_img, 0.8)
+
+    def locateCantWaterButton(self):
+        return self.matchTemplateLocation(self.cant_water_img, 0.8)
+
+    def locateTakeButton(self):
+        return self.matchTemplateLocation(self.take_img, 0.8)
 
     def locateTeleporter(self):
         return self.matchTemplateLocation(self.teleporter, 0.7, True)
