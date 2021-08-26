@@ -119,8 +119,8 @@ class Actions:
         pos = pyautogui.position()
         location = self.vision.locateWaterButton()
         if location is not None:
-            sleep(1.5)
             pyautogui.click(x=location[0], y=location[1])
+            sleep(1.5)
         else:
             location = self.vision.locateCantWaterButton()
             if location is None:
