@@ -111,6 +111,7 @@ class Actions:
             pyautogui.click(x=location[0], y=location[1])
         else:
             pyautogui.press('esc')
+            self.ensureMounted()
             raise Exception('Cannot take')
         if backToOriginal:
             pyautogui.moveTo(x=pos.x, y=pos.y)
@@ -125,6 +126,7 @@ class Actions:
             location = self.vision.locateCantWaterButton()
             if location is None:
                 pyautogui.press('esc')
+                self.ensureMounted()
                 raise Exception('Cannot water')
         if backToOriginal:
             pyautogui.moveTo(x=pos.x, y=pos.y)
