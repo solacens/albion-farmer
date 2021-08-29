@@ -169,17 +169,6 @@ class Actions:
         sleep(1.5)
         self.ensureMounted()
 
-    def checkFarmed(self):
-        self.pointCharacterCursor()
-        pyautogui.click()
-        if (self.vision.locateCantWaterButton() is not None) or (self.vision.locateCantWaterButton() is not None):
-            pyautogui.press('esc')
-            print("Farmed already")
-            return True
-        else:
-            pyautogui.press('esc')
-            return False
-
     def takeOrWaterAction(self, water=False):
         delay = 0
         pos = pyautogui.position()
@@ -271,10 +260,6 @@ class Actions:
         pyautogui.moveTo(x=pos.x, y=pos.y)
 
     def integratedFarm(self, seed, water=False):
-        # Check
-        if self.checkFarmed():
-            return
-
         # Take
         self.pointCharacterCursor()
         try:
