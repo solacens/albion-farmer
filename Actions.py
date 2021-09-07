@@ -245,7 +245,7 @@ class Actions:
         pyautogui.press('esc')
         pyautogui.click(
             x=pos.x + self.offset_takeOrWater[8][0], y=pos.y + self.offset_takeOrWater[8][1], button='right')
-        sleep(2)
+        sleep(5)
         self.ensureMounted()
 
     def useSeed(self, seed):
