@@ -287,8 +287,6 @@ class Actions:
         if water:
             self.takeOrWaterAction(water=True)
 
-        print("Farmed")
-
     def locateMapPointer(self):
         if not self.vision.mapOpened():
             pyautogui.press('n')

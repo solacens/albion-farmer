@@ -12,7 +12,6 @@ actions = Actions(vision)
 print('Window size x{} y{}'.format(vision.width, vision.height))
 print('Window position x{} y{}'.format(vision.pos_x, vision.pos_y))
 
-
 def prerequisite():
     actions.activateGameWindow()
     actions.ensureMaxView()
@@ -20,24 +19,41 @@ def prerequisite():
     actions.ensureMounted()
     print("Prerequisite alignment actions done.")
 
-
 def solacens():
     prerequisite()
 
     # Starting from "Solacens's Island"
-    actions.autoFarm(seed=3, water=True)
-    actions.useTeleporter("SOLACEND'S ISLAND")
-    actions.autoFarm(seed=3, water=True)
-    actions.useTeleporter("SOLACENE'S ISLAND")
-    actions.autoFarm(seed=3, water=False)
-    actions.useTeleporter("SOLACENO'S ISLAND")
-    actions.autoFarm(seed=3, water=False)
     actions.useTeleporter("SOLACENX'S ISLAND")
     actions.autoFarm(seed=4, water=False)
     actions.useTeleporter("SOLACENZ'S ISLAND")
     actions.autoFarm(seed=4, water=False)
+    actions.useTeleporter("SOLACEND'S ISLAND")
+    actions.autoWater()
+    actions.useTeleporter("SOLACENS'S ISLAND")
+    actions.autoWater()
+
+def solacenz1():
+    prerequisite()
+
+    # Starting from "Solacens's Island"
+    actions.autoFarm(seed=3, water=False)
+    actions.useTeleporter("SOLACEND'S ISLAND")
+    actions.autoFarm(seed=3, water=False)
+    actions.useTeleporter("SOLACENE'S ISLAND")
+    actions.autoFarm(seed=3, water=False)
+    actions.useTeleporter("SOLACENO'S ISLAND")
+    actions.autoFarm(seed=3, water=False)
     actions.useTeleporter("SOLACENS'S ISLAND")
 
+def solacenz2():
+    prerequisite()
+
+    # Starting from "Solacens's Island"
+    actions.useTeleporter("SOLACENX'S ISLAND")
+    actions.autoWater()
+    actions.useTeleporter("SOLACENZ'S ISLAND")
+    actions.autoWater()
+    actions.useTeleporter("SOLACENS'S ISLAND")
 
 def on_press_quit(key):
     if hasattr(key, 'vk'):
@@ -84,8 +100,10 @@ def on_press(key):
             solacens()
             return
         elif key.vk == 104:  # 8
+            solacenz1()
             return
         elif key.vk == 105:  # 9
+            solacenz2()
             return
 
 
@@ -98,36 +116,6 @@ listener.start()
 listener_quit = keyboard.Listener(
     on_press=on_press_quit)
 listener_quit.start()
-
-print("""
-# 0
-actions.pointCharacterCursor()
-# +
-actions.recordCursorPosition()
-# -
-actions.moveToRecordedCursorPosition()
-# .
-actions.getOffsetToRecordedCursorPosition()
-# 1
-actions.takeOrWaterAction()
-# 2
-actions.farmAction()
-# 3
-actions.takeOrWaterAction(True)
-# 4
-prerequisite()
-actions.autoFarm(seed=3, water=False)
-# 5
-prerequisite()
-actions.autoFarm(seed=4, water=False)
-# 6
-prerequisite()
-actions.autoWater()
-# 7
-solacens()
-# 8
-# 9
-""")
 
 if True:
     listener_quit.join()

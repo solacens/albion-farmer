@@ -136,7 +136,7 @@ class Vision:
         return img
 
     def mounted(self):
-        location = self.matchTemplateLocation(self.mount_img, 0.8)
+        location = self.matchTemplateLocation(self.mount_img, 0.6)
         return location != None
 
     def mapOpened(self):
