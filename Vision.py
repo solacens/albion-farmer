@@ -74,6 +74,9 @@ class Vision:
         self.teleporter = cv2.imread(
             'img/teleporter.jpg', cv2.IMREAD_UNCHANGED)
 
+        print('Window size x{} y{}'.format(self.width, self.height))
+        print('Window position x{} y{}'.format(self.pos_x, self.pos_y))
+
     def imshow(self, data):
         cv2.imshow('Imshow', data)
 

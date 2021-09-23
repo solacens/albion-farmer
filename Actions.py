@@ -1,4 +1,5 @@
 from time import sleep, time
+from Vision import Vision
 import cv2 as cv
 import numpy as np
 import pyautogui
@@ -40,8 +41,8 @@ class Actions:
     path_5_to_teleporter = [(781, 520), (516, 684), (416, 618), (303, 703)]
 
     # Constructor
-    def __init__(self, vision):
-        self.vision = vision
+    def __init__(self):
+        self.vision = Vision()
 
     def activateGameWindow(self):
         pyautogui.moveTo(x=self.vision.pos_x + 40, y=self.vision.pos_y - 15)

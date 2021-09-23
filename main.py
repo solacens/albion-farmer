@@ -1,18 +1,14 @@
 from Actions import Actions
-from Vision import Vision
 from pynput import keyboard
 import os
 
 # Change the working directory to the folder this script is in.
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
-# initialize the WindowCapture class
-vision = Vision()
-actions = Actions(vision)
-print('Window size x{} y{}'.format(vision.width, vision.height))
-print('Window position x{} y{}'.format(vision.pos_x, vision.pos_y))
+print('Ready.')
+print('----------------------------------------')
 
-def prerequisite():
+def prerequisite(actions):
     actions.activateGameWindow()
     actions.ensureMaxView()
     actions.ensureMapSizeAndLocation()
@@ -20,7 +16,13 @@ def prerequisite():
     print("Prerequisite alignment actions done.")
 
 def solacens():
-    prerequisite()
+    try:
+        actions = Actions()
+    except Exception as e:
+        print(e)
+        return
+
+    prerequisite(actions)
 
     # Starting from "Solacens's Island"
     actions.useTeleporter("SOLACENX'S ISLAND")
@@ -32,8 +34,16 @@ def solacens():
     actions.useTeleporter("SOLACENS'S ISLAND")
     actions.autoWater()
 
+    print('----------------------------------------')
+
 def solacenz1():
-    prerequisite()
+    try:
+        actions = Actions()
+    except Exception as e:
+        print(e)
+        return
+
+    prerequisite(actions)
 
     # Starting from "Solacens's Island"
     actions.autoFarm(seed=3, water=False)
@@ -45,8 +55,16 @@ def solacenz1():
     actions.autoFarm(seed=3, water=False)
     actions.useTeleporter("SOLACENS'S ISLAND")
 
+    print('----------------------------------------')
+
 def solacenz2():
-    prerequisite()
+    try:
+        actions = Actions()
+    except Exception as e:
+        print(e)
+        return
+
+    prerequisite(actions)
 
     # Starting from "Solacens's Island"
     actions.useTeleporter("SOLACENX'S ISLAND")
@@ -54,6 +72,8 @@ def solacenz2():
     actions.useTeleporter("SOLACENZ'S ISLAND")
     actions.autoWater()
     actions.useTeleporter("SOLACENS'S ISLAND")
+
+    print('----------------------------------------')
 
 def on_press_quit(key):
     if hasattr(key, 'vk'):
