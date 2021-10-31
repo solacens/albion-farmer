@@ -328,8 +328,8 @@ class Actions:
 
                 moveDis = 200
                 if dis < 3:
-                    if len(path) == 0:
-                        print("Position {} reached".format(toPlace))
+                    # if len(path) == 0:
+                    #     print("Position {} reached".format(toPlace))
                     break
                 elif dis < 30 and dis > 3:
                     moveDis = 60
