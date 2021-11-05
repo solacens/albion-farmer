@@ -13,7 +13,7 @@ def prerequisite(actions):
     actions.ensureMaxView()
     actions.ensureMapSizeAndLocation()
     actions.ensureMounted()
-    print("Prerequisite alignment actions done.")
+    # print("Prerequisite alignment actions done.")
 
 def solacens():
     try:
@@ -50,9 +50,9 @@ def solacenz1():
     actions.useTeleporter("SOLACEND'S ISLAND")
     actions.autoFarm(seed=3, water=False)
     actions.useTeleporter("SOLACENE'S ISLAND")
-    actions.autoFarm(seed=3, water=False)
+    actions.autoFarm(seed=3, water=True)
     actions.useTeleporter("SOLACENO'S ISLAND")
-    actions.autoFarm(seed=3, water=False)
+    actions.autoFarm(seed=3, water=True)
     actions.useTeleporter("SOLACENS'S ISLAND")
 
     print('----------------------------------------')
