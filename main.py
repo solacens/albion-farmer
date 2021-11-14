@@ -25,39 +25,17 @@ def solacens():
     prerequisite(actions)
 
     # Starting from "Solacens's Island"
-    actions.useTeleporter("SOLACENX'S ISLAND")
-    actions.autoFarm(seed=4, water=False)
-    actions.useTeleporter("SOLACENZ'S ISLAND")
-    actions.autoFarm(seed=4, water=False)
-    actions.useTeleporter("SOLACEND'S ISLAND")
-    actions.autoWater()
-    actions.useTeleporter("SOLACENS'S ISLAND")
-    actions.autoWater()
-
-    print('----------------------------------------')
-
-def solacenz1():
-    try:
-        actions = Actions()
-    except Exception as e:
-        print(e)
-        return
-
-    prerequisite(actions)
-
-    # Starting from "Solacens's Island"
-    actions.autoFarm(seed=3, water=False)
-    actions.useTeleporter("SOLACEND'S ISLAND")
-    actions.autoFarm(seed=3, water=False)
-    actions.useTeleporter("SOLACENE'S ISLAND")
-    actions.autoFarm(seed=3, water=True)
     actions.useTeleporter("SOLACENO'S ISLAND")
-    actions.autoFarm(seed=3, water=True)
+    actions.autoFarm(seed=4, water=True)
+    actions.useTeleporter("SOLACENX'S ISLAND")
+    actions.autoFarm(seed=4, water=True)
+    actions.useTeleporter("SOLACENZ'S ISLAND")
+    actions.autoFarm(seed=4, water=False)
     actions.useTeleporter("SOLACENS'S ISLAND")
 
     print('----------------------------------------')
 
-def solacenz2():
+def solacenz():
     try:
         actions = Actions()
     except Exception as e:
@@ -67,10 +45,11 @@ def solacenz2():
     prerequisite(actions)
 
     # Starting from "Solacens's Island"
-    actions.useTeleporter("SOLACENX'S ISLAND")
-    actions.autoWater()
-    actions.useTeleporter("SOLACENZ'S ISLAND")
-    actions.autoWater()
+    actions.autoFarm(seed=3, water=True)
+    actions.useTeleporter("SOLACEND'S ISLAND")
+    actions.autoFarm(seed=3, water=True)
+    actions.useTeleporter("SOLACENE'S ISLAND")
+    actions.autoFarm(seed=3, water=False)
     actions.useTeleporter("SOLACENS'S ISLAND")
 
     print('----------------------------------------')
@@ -120,10 +99,9 @@ def on_press(key):
             solacens()
             return
         elif key.vk == 104:  # 8
-            solacenz1()
+            solacenz()
             return
         elif key.vk == 105:  # 9
-            solacenz2()
             return
 
 
