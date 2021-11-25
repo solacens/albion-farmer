@@ -95,13 +95,13 @@ def on_press(key):
             prerequisite()
             actions.autoWater()
             return
-        elif key.vk == 103:  # 7
+        elif key.vk == 103 or key.vk == 55:  # 7
             solacens()
             return
-        elif key.vk == 104:  # 8
+        elif key.vk == 104 or key.vk == 56:  # 8
             solacenz()
             return
-        elif key.vk == 105:  # 9
+        elif key.vk == 105 or key.vk == 57:  # 9
             return
 
 
